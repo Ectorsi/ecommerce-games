@@ -63,10 +63,10 @@ const GlobalStyles: GlobalStyleComponent<
       font-family: ${theme.font.family};
       font-size: ${theme.font.sizes.medium};
 
-      ${!removeBg &&
+      /* ${!removeBg &&
     css`
         background-color: ${theme.colors.mainBg};
-      `}
+      `} */
     }
   `}
 
