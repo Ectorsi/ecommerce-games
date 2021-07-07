@@ -12,6 +12,7 @@ const wrapperModifiers = {
   lineBottom: (theme: DefaultTheme) => css`
     position: relative;
     margin-bottom: ${theme.spacings.medium};
+
     &::after {
       position: absolute;
       left: 0;
