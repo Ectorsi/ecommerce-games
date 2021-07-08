@@ -1,7 +1,11 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 import { ButtonProps } from '.';
 
-type WrapperProps = Pick<ButtonProps, 'size'>;
+// type WrapperProps = Pick<ButtonProps, 'size' | 'fullWidth'>;
+
+type WrapperProps = {
+  hasIcon: boolean;
+} & Omit<ButtonProps, 'children'>
 
 const wrapperModifiers = {
   small: (theme: DefaultTheme) => css`
@@ -10,24 +14,43 @@ const wrapperModifiers = {
   `,
   medium: (theme: DefaultTheme) => css`
     height: 4rem;
-    font-size: ${theme.font.sizes.xsmall};
+    font-size: ${theme.font.sizes.small};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.medium};
   `,
   large: (theme: DefaultTheme) => css`
     height: 5rem;
     font-size: ${theme.font.sizes.medium};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
+  `,
+  fullWidth: () => css`
+    width: 100%;
+  `,
+  withIcon: (theme: DefaultTheme) => css`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 1.5rem;
+
+      & + span {
+        margin-left: ${theme.spacings.xsmall};
+      }
+    }
   `
 };
 
 export const Container = styled.button<WrapperProps>`
-  ${({ theme, size }) => css`
+  ${({ theme, size, fullWidth, hasIcon }) => css`
     background: linear-gradient(180deg, #ff5f5f 0%, #f062c0 50%);
     color: ${theme.colors.white};
     border: none;
+    cursor: pointer;
     border-radius: ${theme.border.radius};
     padding: ${theme.spacings.xxsmall};
 
     ${!!size && wrapperModifiers[size](theme)}
+    ${!!fullWidth && wrapperModifiers.fullWidth()}
+    ${!!hasIcon && wrapperModifiers.withIcon(theme)}
   `}
 `;
