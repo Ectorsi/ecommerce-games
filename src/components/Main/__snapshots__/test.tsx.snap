@@ -55,12 +55,14 @@ exports[`<Main /> Shoud be able to render Main component 1`] = `
   <h1
     class="c2"
   >
+     
     React Avançado
+     
   </h1>
   <h2
     class="c3"
   >
-    TypeScript, ReactJS, NextJS e StyledComponents
+    TypeScript, ReactJS, NextJS e Styled Components
   </h2>
   <img
     alt="Um desenvolvedor de frente para uma tela com código"
