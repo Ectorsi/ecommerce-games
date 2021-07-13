@@ -13,7 +13,7 @@ const props = {
 
 describe('<Banner /> ', () => {
   it('Shoud be able to render correctly', () => {
-    renderWithTheme(<Banner {...props} />);
+    const { container } = renderWithTheme(<Banner {...props} />);
 
 
 
@@ -24,6 +24,6 @@ describe('<Banner /> ', () => {
     expect(screen.getByRole('heading', { name: /Play the new CrashLands season/i })
     ).toBeInTheDocument();
 
-    // expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
