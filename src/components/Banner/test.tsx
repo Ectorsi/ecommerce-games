@@ -1,16 +1,29 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { renderWithTheme } from 'utils/tests/helpers';
 
 import Banner from '.';
 
-describe('
-<Banner /> ', () => {
-it('Shoud be able to render Banner component', () => {
-const { container } = render(
-<Banner />);
+const props = {
+  img: 'url',
+  title: 'Defy death',
+  subtitle: '<p>Play the new <strong>CrashLands</strong> season',
+  buttonLabel: 'Buy now',
+  buttonLink: '/games/defy-death'
+};
 
-expect(screen.getByRole('heading', { name: /Banner/i })
-).toBeInTheDocument();
+describe('<Banner /> ', () => {
+  it('Shoud be able to render correctly', () => {
+    renderWithTheme(<Banner {...props} />);
 
-expect(container.firstChild).toMatchSnapshot();
-});
+
+
+    expect(screen.getByRole('img', { name: /Defy death/i })
+    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Defy death/i })
+    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Play the new CrashLands season/i })
+    ).toBeInTheDocument();
+
+    // expect(container.firstChild).toMatchSnapshot();
+  });
 });
