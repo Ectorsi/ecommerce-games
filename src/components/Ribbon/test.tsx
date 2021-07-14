@@ -7,6 +7,7 @@ describe('<Ribbon /> ', () => {
   it('Shoud be able to render the text correctly', () => {
     renderWithTheme(<Ribbon>Best Seller</Ribbon>);
 
+
     expect(screen.getByText(/Best Seller/i)).toBeInTheDocument();
 
     // expect(container.firstChild).toMatchSnapshot();
