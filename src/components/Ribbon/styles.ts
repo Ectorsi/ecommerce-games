@@ -1,20 +1,24 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 
-import { RibbonColors, RibbonProps, RibbonSizes } from '.'
+import { RibbonColors, RibbonProps } from '.'
 
 const wrapperModifiers = {
   bgcolor: (theme: DefaultTheme, color: RibbonColors) => css`
     background-color: ${theme.colors[color]};
   `,
-  ribbonSize: (theme: DefaultTheme, size: RibbonSizes) => css`
-    height: ${theme.spacings[size]};
-    font-size: ${theme.font.sizes[size]};
-  `
+  normal: (theme: DefaultTheme) => css`
+    font-size: ${theme.font.sizes.small};
+    height: 3.6rem;
+  `,
+  small: (theme: DefaultTheme) => css`
+  font-size: ${theme.font.sizes.xsmall};
+    height: 2.6rem;
+  `,
 }
 
 export const Wrapper = styled.div<Omit<RibbonProps, 'children'>>`
   ${({ theme, color, size }) => css`
       ${!!color && wrapperModifiers.bgcolor(theme, color)}
-      ${!!size && wrapperModifiers.ribbonSize(theme, size)}
+      ${!!size && wrapperModifiers[size](theme)}
   `}
 `;
