@@ -112,9 +112,6 @@ exports[`<Slider />  Shoud be able to render children as slider item 1`] = `
 <section
   class="c0"
 >
-  <h1>
-    Slider
-  </h1>
   <div
     class="slick-slider slick-initialized"
     dir="ltr"

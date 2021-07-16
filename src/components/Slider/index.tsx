@@ -12,7 +12,6 @@ export type SliderProps = {
 const Slider = ({ children, settings }: SliderProps) => {
   return (
     <S.Wrapper>
-      <h1>Slider</h1>
       <SlickSlider {...settings} >
         {children}
       </SlickSlider>
