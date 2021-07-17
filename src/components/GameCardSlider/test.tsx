@@ -15,7 +15,28 @@ const items = [
     img: 'https://source.unsplash.com/user/willianjusten/300x141',
     price: 'R$ 235,00',
     promotionalPrice: 'R$ 215,00'
-  }
+  },
+  {
+    title: 'Population Zero',
+    developer: 'Rockstar Games',
+    img: 'https://source.unsplash.com/user/willianjusten/300x141',
+    price: 'R$ 235,00',
+    promotionalPrice: 'R$ 215,00'
+  },
+  {
+    title: 'Population Zero',
+    developer: 'Rockstar Games',
+    img: 'https://source.unsplash.com/user/willianjusten/300x141',
+    price: 'R$ 235,00',
+    promotionalPrice: 'R$ 215,00'
+  },
+  {
+    title: 'Population Zero',
+    developer: 'Rockstar Games',
+    img: 'https://source.unsplash.com/user/willianjusten/300x141',
+    price: 'R$ 235,00',
+    promotionalPrice: 'R$ 215,00'
+  },
 ]
 
 import GameCardSlider from '.';
@@ -27,7 +48,7 @@ describe('<GameCardSlider /> ', () => {
 
 
 
-    expect(container.querySelectorAll('.slick-active')).toHaveLength(2);
+    expect(container.querySelectorAll('.slick-active')).toHaveLength(4);
 
     // expect(container.firstChild).toMatchSnapshot();
   });
