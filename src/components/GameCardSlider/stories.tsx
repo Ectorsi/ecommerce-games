@@ -53,7 +53,7 @@ export default {
   args: { items },
   parameters: {
     backgrounds: {
-      default: 'dark'
+      default: 'won-dark'
     },
     layout: 'fullscreen'
   }
