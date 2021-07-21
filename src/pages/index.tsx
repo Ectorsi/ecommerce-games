@@ -17,13 +17,13 @@ export function getServerSideProps() {
     props: {
       banners: bannersMock,
       newGames: gamesMock,
-      mostPopularHightlight: highlightMock,
+      mostPopularHighlight: highlightMock,
       mostPopularGames: gamesMock,
       upcommingGames: gamesMock,
       upcommingHighlight: highlightMock,
       upcommingMoreGames: gamesMock,
       freeGames: gamesMock,
-      freeHightlight: highlightMock
+      freeHighlight: highlightMock
     }
   }
 }
