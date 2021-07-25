@@ -31,13 +31,6 @@ describe('<Home /> ', () => {
     ).toBeInTheDocument();
     expect(screen.getAllByRole('img', { name: /won games/i })
     ).toHaveLength(2)
-    // expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('Shoud be able to render the sections', () => {
-    renderWithTheme(<Home {...props} />);
-
-
     expect(screen.getByRole('heading', { name: /News/i })
     ).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /Most popular/i })
@@ -46,17 +39,13 @@ describe('<Home /> ', () => {
     ).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /Free Games/i })
     ).toBeInTheDocument();
-
-  });
-
-  it('Shoud be able to render the sections', () => {
-    renderWithTheme(<Home {...props} />);
-
     //banner
     expect(screen.getAllByText(/defy death 1/i)).toHaveLength(1);
     // Card Game (5 sections com 4 cards cada = 5x1 = 5)
     expect(screen.getAllByText(/population zero/i)).toHaveLength(5);
     //highlight
     expect(screen.getAllByText(/read dead is back!/i)).toHaveLength(3);
+
+    // expect(container.firstChild).toMatchSnapshot();
   });
 });
