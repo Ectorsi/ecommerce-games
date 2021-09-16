@@ -29,4 +29,13 @@ describe('<Checkbox /> ', () => {
       color: '#030517'
     })
   });
+  it('Shoud dispatch onChange when label status changes', () => {
+    const onCheck = jest.fn();
+    renderWithTheme(<Checkbox label="Checkbox" onCheck={onCheck} />)
+
+    expect(onCheck).not.toHaveBeenCalled();
+
+
+
+  });
 });
