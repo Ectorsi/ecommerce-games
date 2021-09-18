@@ -27,7 +27,9 @@ const Button = ({
     hasIcon={!!icon}
     minimal={minimal}
     {...props}
-  > {icon} {!!children && <span>{children}</span>}</S.Container>
+  >
+    {icon} {!!children && <span>{children}</span>}
+  </S.Container>
 );
 
 export default Button;
