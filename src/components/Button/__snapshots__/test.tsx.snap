@@ -35,7 +35,6 @@ exports[`<Button />  Shoud render the medium size by default 1`] = `
   class="c0"
 >
    
-   
   <span>
     Buy now
   </span>
