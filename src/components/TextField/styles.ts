@@ -1,22 +1,10 @@
 import styled, { css, DefaultTheme } from 'styled-components';
+import { TextFieldProps } from '.';
 
-type WrapperProps = {
-    hasIcon: boolean;
-}
+type IconPositionProps = Pick<TextFieldProps, 'iconPosition'>
 
-const wrapperModifiers = {
-    withIcon: (theme: DefaultTheme) => css`
-        svg {
-            width: 1.5rem;
-
-            & + span {
-                margin-left: ${theme.spacings.xsmall};
-            }
-        }
-    `
-}
-export const InputWrapper = styled.div<WrapperProps>`
-    ${({ theme, hasIcon }) => css`
+export const InputWrapper = styled.div`
+    ${({ theme }) => css`
         display: flex;
         background: ${theme.colors.lightGray};
         border-radius: 0.2rem;
@@ -25,23 +13,23 @@ export const InputWrapper = styled.div<WrapperProps>`
         border-color: ${theme.colors.lightGray};
 
         &:focus-within {
-        box-shadow: 0 0 0.5rem ${theme.colors.primary};
+            box-shadow: 0 0 0.5rem ${theme.colors.primary};
         }
-
-        ${!!hasIcon && wrapperModifiers.withIcon(theme)};
     `}
 `;
 
-export const Input = styled.input`
-    ${({ theme }) => css`
+export const Input = styled.input<IconPositionProps>`
+    ${({ theme, iconPosition }) => css`
         color: ${theme.colors.black};
         font-family: ${theme.font.family};
         font-size: ${theme.font.sizes.medium};
         padding: ${theme.spacings.xxsmall} 0;
+        padding-${iconPosition}: ${theme.spacings.xsmall};
         background: transparent;
         border: 0;
         outline: none;
         width: 100%;
+
     `}
 `;
 
@@ -53,5 +41,37 @@ export const Label = styled.label`
     `}
 `;
 
-export const Wrapper = styled.div``;
+export const Icon = styled.div<IconPositionProps>`
+    ${({ theme, iconPosition }) => css`
+        display: flex;
+        width: 2.2rem;
+        color: ${theme.colors.gray};
+        order: ${iconPosition === 'right' ? 1 : 0};
+
+        & > svg {
+            width: 100%;
+        }
+    `}
+`;
+
+const wrapperModifiers = {
+    disabled: (theme: DefaultTheme) => css`
+        ${Label},
+        ${Input},
+        ${Icon} {
+            cursor: not-allowed;
+            color: ${theme.colors.gray};
+
+            &::placeholder {
+                color: currentColor;
+            }
+        }
+    `,
+};
+
+export const Wrapper = styled.div<Pick<TextFieldProps, 'disabled'>>`
+    ${({ theme, disabled }) => css`
+        ${disabled && wrapperModifiers.disabled(theme)};
+    `}
+`;
 
