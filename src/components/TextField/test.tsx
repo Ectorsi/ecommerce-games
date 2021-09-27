@@ -1,48 +1,68 @@
-import { Email } from '@styled-icons/material-outlined';
-import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { renderWithTheme } from 'utils/tests/helpers';
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { Email } from '@styled-icons/material-outlined'
 
-import TextField from '.';
+import { renderWithTheme } from 'utils/tests/helpers'
 
-describe('<TextField /> ', () => {
-    it('Shoud be able to render TextField component with label', () => {
-        const { container } = renderWithTheme(
-            <TextField label="E-mail" labelFor="textField" />
-        );
-        expect(screen.getByText('E-mail')).toBeInTheDocument();
-        expect(screen.getByText('E-mail')).toHaveAttribute('for', 'textField');
-        expect(container.firstChild).toMatchSnapshot();
-    });
+import TextField from '.'
 
-    it('Shoud be able to render TextField component without label', () => {
-        renderWithTheme(<TextField />);
+describe('<TextField />', () => {
+    it('Renders with Label', () => {
+        renderWithTheme(<TextField label="Label" labelFor="Field" id="Field" />)
 
-        expect(screen.queryByLabelText('label')).not.toBeInTheDocument();
-    });
+        expect(screen.getByLabelText('Label')).toBeInTheDocument()
+    })
 
-    it('Shoud be able to render TextField component with placeholder', () => {
-        renderWithTheme(<TextField placeholder="placeholder" />);
+    it('Renders without Label', () => {
+        renderWithTheme(<TextField />)
 
-        expect(screen.getByPlaceholderText('placeholder')).toBeInTheDocument();
-    });
+        expect(screen.queryByLabelText('Label')).not.toBeInTheDocument()
+    })
 
-    it('Shoud be able to render TextField component with icon', () => {
-        renderWithTheme(<TextField icon={<Email data-testid="icon" />} />);
+    it('Renders with placeholder', () => {
+        renderWithTheme(<TextField placeholder="hey you" />)
 
-        expect(screen.getByTestId('icon')).toBeInTheDocument();
-    });
+        expect(screen.getByPlaceholderText('hey you')).toBeInTheDocument()
+    })
 
-    it('Shoud be able to render icon on the right side', () => {
+    it('Renders with Icon', () => {
+        renderWithTheme(<TextField icon={<Email data-testid="icon" />} />)
+
+        expect(screen.getByTestId('icon')).toBeInTheDocument()
+    })
+
+    it('Renders with Icon on the right side', () => {
         renderWithTheme(
             <TextField icon={<Email data-testid="icon" />} iconPosition="right" />
-        );
+        )
 
-        expect(screen.getByTestId('icon').parentElement).toHaveStyle({ order: 1 });
-    });
+        expect(screen.getByTestId('icon').parentElement).toHaveStyle({ order: 1 })
+    })
 
-    it('Shoud be able to render TextField disabled', async () => {
-        const onInput = jest.fn();
+    it('Changes its value when typing', async () => {
+        const onInput = jest.fn()
+        renderWithTheme(
+            <TextField
+                onInput={onInput}
+                label="TextField"
+                labelFor="TextField"
+                id="TextField"
+            />
+        )
+
+        const input = screen.getByRole('textbox')
+        const text = 'This is my new text'
+        userEvent.type(input, text)
+
+        await waitFor(() => {
+            expect(input).toHaveValue(text)
+            expect(onInput).toHaveBeenCalledTimes(text.length)
+        })
+        expect(onInput).toHaveBeenCalledWith(text)
+    })
+
+    it('Does not changes its value when disabled', async () => {
+        const onInput = jest.fn()
         renderWithTheme(
             <TextField
                 onInput={onInput}
@@ -51,53 +71,61 @@ describe('<TextField /> ', () => {
                 id="TextField"
                 disabled
             />
-        );
-        const input = screen.getByRole('textbox');
-        expect(input).toBeDisabled();
+        )
 
-        const text = 'This is my new text';
-        userEvent.type(input, text);
+        const input = screen.getByRole('textbox')
+        expect(input).toBeDisabled()
+
+        const text = 'This is my new text'
+        userEvent.type(input, text)
 
         await waitFor(() => {
-            expect(input).not.toHaveValue();
+            expect(input).not.toHaveValue(text)
         })
-        expect(onInput).not.toHaveBeenCalled();
-    });
+        expect(onInput).not.toHaveBeenCalled()
+    })
 
-    it('Shoud be able to render TextField accessible by TAB', () => {
-        renderWithTheme(
+    it('Renders with error', () => {
+        const { container } = renderWithTheme(
             <TextField
+                icon={<Email data-testid="icon" />}
                 label="TextField"
                 labelFor="TextField"
+                error="Error message"
             />
-        );
-        const input = screen.getByRole('textbox');
-        expect(document.body).toHaveFocus();
+        )
 
-        userEvent.tab();
-        expect(input).toHaveFocus();
+        expect(screen.getByText('Error message')).toBeInTheDocument()
 
-    });
+        expect(container.firstChild).toMatchSnapshot()
+    })
 
-    it('Shoud be able to render changes its value when typing', async () => {
-        const onInput = jest.fn();
+    it('Is accessible by tab', () => {
+        renderWithTheme(
+            <TextField label="TextField" labelFor="TextField" id="TextField" />
+        )
+
+        const input = screen.getByLabelText('TextField')
+        expect(document.body).toHaveFocus()
+
+        userEvent.tab()
+        expect(input).toHaveFocus()
+    })
+
+    it('Is not accessible by tab when disabled', () => {
         renderWithTheme(
             <TextField
-                onInput={onInput}
                 label="TextField"
                 labelFor="TextField"
                 id="TextField"
+                disabled
             />
-        );
+        )
 
-        const input = screen.getByLabelText('TextField');
-        const text = 'This is my new text';
+        const input = screen.getByLabelText('TextField')
+        expect(document.body).toHaveFocus()
 
-        userEvent.type(input, text);
-
-        await waitFor(() => {
-            expect(input).toHaveValue(text);
-            expect(onInput).toHaveBeenCalledTimes(text.length);
-        });
-    });
-});
+        userEvent.tab()
+        expect(input).not.toHaveFocus()
+    })
+})
