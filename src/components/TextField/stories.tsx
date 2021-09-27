@@ -1,9 +1,10 @@
-import { Story, Meta } from '@storybook/react/types-6-0';
-import TextField, { TextFieldProps } from '.';
-import { Email } from '@styled-icons/material-outlined';
+import { Story, Meta } from '@storybook/react/types-6-0'
+import { Email } from '@styled-icons/material-outlined'
+
+import TextField, { TextFieldProps } from '.'
 
 export default {
-    title: 'TextField',
+    title: 'Form/TextField',
     component: TextField,
     args: {
         label: 'E-mail',
@@ -11,36 +12,26 @@ export default {
         icon: <Email />,
         id: 'Email',
         initialValue: '',
-        placeholder: 'ector-si@hotmail.com',
-        disabled: false,
-        iconPosition: 'left'
+        placeholder: 'john.cage@gmail.com'
     },
     argTypes: {
         onInput: { action: 'changed' },
-        icon: {
-            type: ''
-        }
+        icon: { type: '' }
     }
-} as Meta;
+} as Meta
 
 export const Default: Story<TextFieldProps> = (args) => (
-    <div style={{ maxWidth: 300, padding: 15 }} >
+    <div style={{ maxWidth: 300, padding: 15 }}>
         <TextField {...args} />
     </div>
-);
+)
 
-export const WithIcon: Story<TextFieldProps> = (args) => (
-    <div style={{ maxWidth: 300, padding: 15 }} >
+export const withError: Story<TextFieldProps> = (args) => (
+    <div style={{ maxWidth: 300, padding: 15 }}>
         <TextField {...args} />
     </div>
-);
+)
 
-WithIcon.args = {
-    icon: <Email />
-};
-
-export const HasDisabled: Story<TextFieldProps> = (args) => (
-    <div style={{ maxWidth: 300, padding: 15 }} >
-        <TextField {...args} disabled />
-    </div>
-);
+withError.args = {
+    error: 'Ops...something is wrong'
+}
