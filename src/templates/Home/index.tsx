@@ -13,83 +13,83 @@ import Menu from 'components/Menu';
 import * as S from './styles';
 
 export type HomeTemplateProps = {
-  banners: BannerProps[]
-  newGames: GameCardProps[]
-  mostPopularHighlight: HighlightProps
-  mostPopularGames: GameCardProps[]
-  upcommingGames: GameCardProps[]
-  upcommingHighlight: HighlightProps
-  upcommingMoreGames: GameCardProps[]
-  freeGames: GameCardProps[]
-  freeHighlight: HighlightProps
+    banners: BannerProps[]
+    newGames: GameCardProps[]
+    mostPopularHighlight: HighlightProps
+    mostPopularGames: GameCardProps[]
+    upcommingGames: GameCardProps[]
+    upcommingHighlight: HighlightProps
+    upcommingMoreGames: GameCardProps[]
+    freeGames: GameCardProps[]
+    freeHighlight: HighlightProps
 }
 
 const Home = ({
-  banners,
-  newGames,
-  mostPopularHighlight,
-  mostPopularGames,
-  upcommingGames,
-  upcommingHighlight,
-  upcommingMoreGames,
-  freeGames,
-  freeHighlight
+    banners,
+    newGames,
+    mostPopularHighlight,
+    mostPopularGames,
+    upcommingGames,
+    upcommingHighlight,
+    upcommingMoreGames,
+    freeGames,
+    freeHighlight
 }: HomeTemplateProps) => (
-  <section>
-    <Container>
-      <Menu />
-      <S.SectionBanner>
-        <BannerSlider items={banners} />
-      </S.SectionBanner>
-    </Container>
+    <section>
+        <Container>
+            <Menu />
+            <S.SectionBanner>
+                <BannerSlider items={banners} />
+            </S.SectionBanner>
+        </Container>
 
-    <S.SectionNews>
-      <Container>
-        <Heading lineLeft lineColor="secondary" color="black">
-          News
-    </Heading>
+        <S.SectionNews>
+            <Container>
+                <Heading lineLeft lineColor="secondary" color="black">
+                    News
+                </Heading>
 
-        <GameCardSlider items={newGames} color="black" />
-      </Container>
-    </S.SectionNews>
+                <GameCardSlider items={newGames} color="black" />
+            </Container>
+        </S.SectionNews>
 
-    <Container>
-      <S.SectionMostPopular>
-        <Heading lineLeft lineColor="secondary">
-          Most Popular
-    </Heading>
+        <Container>
+            <S.SectionMostPopular>
+                <Heading lineLeft lineColor="secondary">
+                    Most Popular
+                </Heading>
 
-        <Highlight {...mostPopularHighlight} />
-        <GameCardSlider items={mostPopularGames} />
-      </S.SectionMostPopular>
+                <Highlight {...mostPopularHighlight} />
+                <GameCardSlider items={mostPopularGames} />
+            </S.SectionMostPopular>
 
 
-      <S.SectionUpcoming>
-        <Heading lineLeft lineColor="secondary">
-          Upcomming
-    </Heading>
+            <S.SectionUpcoming>
+                <Heading lineLeft lineColor="secondary">
+                    Upcomming
+                </Heading>
 
-        <GameCardSlider items={upcommingGames} />
-        <Highlight {...upcommingHighlight} />
-        <GameCardSlider items={upcommingMoreGames} />
-      </S.SectionUpcoming>
+                <GameCardSlider items={upcommingGames} />
+                <Highlight {...upcommingHighlight} />
+                <GameCardSlider items={upcommingMoreGames} />
+            </S.SectionUpcoming>
 
-      <S.SectionFreeGames>
-        <Heading lineLeft lineColor="secondary">
-          Free Games
-    </Heading>
+            <S.SectionFreeGames>
+                <Heading lineLeft lineColor="secondary">
+                    Free Games
+                </Heading>
 
-        <Highlight {...freeHighlight} />
-        <GameCardSlider items={freeGames} />
-      </S.SectionFreeGames>
-    </Container>
+                <Highlight {...freeHighlight} />
+                <GameCardSlider items={freeGames} />
+            </S.SectionFreeGames>
+        </Container>
 
-    <S.SectionFooter>
-      <Container>
-        <Footer />
-      </Container>
-    </S.SectionFooter>
-  </section>
+        <S.SectionFooter>
+            <Container>
+                <Footer />
+            </Container>
+        </S.SectionFooter>
+    </section>
 )
 
 
