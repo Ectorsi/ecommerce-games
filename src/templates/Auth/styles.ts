@@ -1,9 +1,17 @@
 import styled, { css } from 'styled-components';
+import media from 'styled-media-query';
+
+import * as HeadingStyles from '../../components/Heading/styles';
+import * as LogoStyles from '../../components/Logo/styles';
 
 export const Wrapper = styled.main`
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         height: 100vh;
+
+        ${media.greaterThan('medium')`
+            grid-template-columns: 1fr 1fr;
+        `}
 `;
 
 export const BannerBlock = styled.div`
@@ -12,6 +20,14 @@ export const BannerBlock = styled.div`
         background-size: cover;
         background-position: center center;
         position: relative;
+
+
+        padding: ${theme.spacings.xxlarge} ${theme.spacings.xxlarge}
+            ${theme.spacings.large};
+
+        ${media.lessThan('medium')`
+            display: none;
+        `};
 
         &:after {
             content: '';
@@ -28,17 +44,60 @@ export const BannerBlock = styled.div`
 
 export const BannerContent = styled.div`
     ${({ theme }) => css`
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: space-between;
+        height: 100%;
+
+        color: ${theme.colors.white};
         position: relative;
         z-index: ${theme.layers.base};
     `}
 `;
 
-export const Subtitle = styled.h3``;
+export const Subtitle = styled.h3`
+    ${({ theme }) => css`
+        font-size: ${theme.font.sizes.xxlarge};
+        font-weight: ${theme.font.light};
+        margin-top: ${theme.spacings.xxsmall};
 
-export const Footer = styled.p``;
+        strong {
+            color: ${theme.colors.primary};
+        }
+    `}
+`;
+
+export const Footer = styled.p`
+    ${({ theme }) => css`
+        font-size: ${theme.font.sizes.xsmall};
+        text-align: center;
+        align-self: end;
+    `}
+`;
 
 export const Content = styled.div`
     ${({ theme }) => css`
         background: ${theme.colors.white};
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    `}
+`;
+
+export const ContentWrapper = styled.div`
+    ${({ theme }) => css`
+        width: 30rem;
+
+        ${media.greaterThan('medium')`
+            width: 35rem;
+        `}
+
+        ${LogoStyles.Wrapper} {
+            margin: 0 auto ${theme.spacings.xxlarge};
+        }
+
+        ${HeadingStyles.Wrapper} {
+            margin-bottom: ${theme.spacings.medium};
+        }
     `}
 `;

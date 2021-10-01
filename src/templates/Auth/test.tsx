@@ -5,7 +5,7 @@ import Auth from '.';
 
 describe('<Auth /> ', () => {
     it('Shoud be able to render all components and children', () => {
-        const { debug, container } = renderWithTheme(
+        renderWithTheme(
             <Auth title="Auth Title">
                 <input type="text" />
             </Auth>
