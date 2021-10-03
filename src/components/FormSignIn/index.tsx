@@ -1,24 +1,39 @@
 import { Email, Lock } from '@styled-icons/material-outlined';
 import Button from 'components/Button';
 import TextField from 'components/TextField';
+import Link from 'next/link';
 import * as S from './styles';
 
 
 const FormSignIn = () => (
     <S.Wrapper>
-        <S.InputWrapper>
-            <TextField icon={<Email />} placeholder="Email" />
-            <TextField icon={<Lock />} placeholder="Password" />
-        </S.InputWrapper>
-        <Button minimal  >
+        <form>
+            <TextField
+                icon={<Email />}
+                placeholder="Email"
+                name="email"
+                type="email"
+            />
+            <TextField
+                icon={<Lock />}
+                placeholder="Password"
+                name="password"
+                type="password"
+            />
+        </form>
+        <S.ForgotPassword href="#" >
             Forgot your password?
+        </S.ForgotPassword>
+        <Button fullWidth>
+            Sign in now
         </Button>
-        <Button>Sign in now</Button>
-        <span>Don't have account?</span>
-        <Button minimal>
-            Sign up
-        </Button>
-
+        <S.FormLink>
+            Don't have account?
+            {' '}
+            <Link href="/sign-up">
+                <a>Sign Up</a>
+            </Link>
+        </S.FormLink>
     </S.Wrapper>
 );
 
