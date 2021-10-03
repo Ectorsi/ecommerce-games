@@ -7,7 +7,7 @@ describe('<FormSignIn /> ', () => {
     it('Shoud be able to render FormSignIn component', () => {
         renderWithTheme(<FormSignIn />);
 
-        // Verificar email
+        // Verificar E-mail
         const inputEmail = screen.getByPlaceholderText(/Email/i);
         expect(inputEmail).toBeInTheDocument();
         // Verificar Password
