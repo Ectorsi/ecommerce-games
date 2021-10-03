@@ -1,11 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { renderWithTheme } from 'utils/tests/helpers';
 
 import FormSignIn from '.';
 
 describe('<FormSignIn /> ', () => {
     it('Shoud be able to render FormSignIn component', () => {
-        renderWithTheme(<FormSignIn />);
+        const { container } = renderWithTheme(<FormSignIn />);
 
         // Verificar E-mail
         const inputEmail = screen.getByPlaceholderText(/Email/i);
@@ -17,19 +17,21 @@ describe('<FormSignIn /> ', () => {
         const button = screen.getByRole('button', { name: /Sign in now/i });
         expect(button).toBeInTheDocument();
 
+        expect(container.parentElement).toMatchSnapshot();
+
     });
 
     it('Shoud be able to render the forgotPassowrd link', () => {
         renderWithTheme(<FormSignIn />);
 
-        const linkForgotPassword = screen.getByRole('link', { name: /Forgot your password?/i });
+        const linkForgotPassword = screen.getByRole('link', { name: /Forgot your password\?/i });
         expect(linkForgotPassword).toBeInTheDocument();
     });
     it('Shoud be able to render text and link to signUp', () => {
         renderWithTheme(<FormSignIn />);
 
         // Verificar texto
-        const text = screen.getByText(/Don't have account?/i);
+        const text = screen.getByText(/Don't have account\?/i);
         expect(text).toBeInTheDocument();
 
         // Verificar Link
