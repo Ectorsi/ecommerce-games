@@ -1,16 +1,39 @@
 import { render, screen } from '@testing-library/react';
+import { renderWithTheme } from 'utils/tests/helpers';
 
 import FormSignIn from '.';
 
-describe('
-<FormSignIn /> ', () => {
-it('Shoud be able to render FormSignIn component', () => {
-const { container } = render(
-<FormSignIn />);
+describe('<FormSignIn /> ', () => {
+    it('Shoud be able to render FormSignIn component', () => {
+        renderWithTheme(<FormSignIn />);
 
-expect(screen.getByRole('heading', { name: /FormSignIn/i })
-).toBeInTheDocument();
+        // Verificar E-mail
+        const inputEmail = screen.getByPlaceholderText(/Email/i);
+        expect(inputEmail).toBeInTheDocument();
+        // Verificar Password
+        const inputPassword = screen.getByPlaceholderText(/password/i);
+        expect(inputPassword).toBeInTheDocument();
+        // Verificar Button
+        const button = screen.getByRole('button', { name: /Sign in now/i });
+        expect(button).toBeInTheDocument();
 
-expect(container.firstChild).toMatchSnapshot();
-});
+    });
+
+    it('Shoud be able to render the forgotPassowrd link', () => {
+        renderWithTheme(<FormSignIn />);
+
+        const linkForgotPassword = screen.getByRole('link', { name: /Forgot your password?/i });
+        expect(linkForgotPassword).toBeInTheDocument();
+    });
+    it('Shoud be able to render text and link to signUp', () => {
+        renderWithTheme(<FormSignIn />);
+
+        // Verificar texto
+        const text = screen.getByText(/Don't have account?/i);
+        expect(text).toBeInTheDocument();
+
+        // Verificar Link
+        const linkSignUp = screen.getByRole('link', { name: /Sign Up/i });
+        expect(linkSignUp).toBeInTheDocument();
+    });
 });
