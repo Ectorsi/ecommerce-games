@@ -30,7 +30,7 @@ describe('<FormSignIn /> ', () => {
     it('Shoud be able to render text and link to signUp', () => {
         renderWithTheme(<FormSignIn />);
 
-        // Verificar texto
+        // Verificar text
         const text = screen.getByText(/Don't have account\?/i);
         expect(text).toBeInTheDocument();
 
