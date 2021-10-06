@@ -4,7 +4,7 @@ import { darken } from 'polished';
 
 // type WrapperProps = Pick<ButtonProps, 'size' | 'fullWidth'>;
 
-type WrapperProps = {
+export type WrapperProps = {
     hasIcon: boolean;
 } & Omit<ButtonProps, 'children'>
 
