@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Form />  should render the Form component 1`] = `
+.c0 {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.c0 .sc-jSFjdj {
+  margin-bottom: 0.8rem;
+}
+
+.c0 .sc-jSFjdj:last-child {
+  margin-bottom: 0;
+}
+
+.c0 .sc-gKAaRy {
+  margin: 2.4rem auto 1.6rem;
+}
+
+.c1 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  justify-self: center;
+}
+
+.c1 a {
+  color: #3CD3C1;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border-bottom: 0.1rem solid #3CD3C1;
+  -webkit-transition: color,border,0.1s ease-in-out;
+  transition: color,border,0.1s ease-in-out;
+}
+
+.c1 a:hover {
+  color: #29b3a3;
+  border-bottom: 0.1rem solid #29b3a3;
+}
+
+<body>
+  <div>
+    <main
+      class="c0"
+    >
+      <div
+        class="c1"
+      >
+        My nice 
+        <a
+          href="#"
+        >
+          link
+        </a>
+      </div>
+    </main>
+  </div>
+</body>
+`;
