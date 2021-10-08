@@ -28,4 +28,18 @@ Default.args = {
     title: 'Most Popular',
     highlight: highlightMock,
     games: gamesMock
-}
+};
+
+export const WithoutHighlight: Story<ShowcaseProps> = (args) => <Showcase {...args} />
+
+WithoutHighlight.args = {
+    title: 'Most Popular',
+    games: gamesMock
+};
+
+export const WithoutGames: Story<ShowcaseProps> = (args) => <Showcase {...args} />
+
+WithoutGames.args = {
+    title: 'Most Popular',
+    highlight: highlightMock,
+};

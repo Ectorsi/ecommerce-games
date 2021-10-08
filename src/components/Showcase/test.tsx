@@ -1,16 +1,27 @@
-import { render, screen } from '@testing-library/react';
+import 'match-media-mock';
+import { screen } from '@testing-library/react';
+import { renderWithTheme } from 'utils/tests/helpers';
+
+import highlightMock from 'components/Highlight/mock';
+import gamesMock from 'components/GameCardSlider/mock';
 
 import Showcase from '.';
 
-describe('
-<Showcase /> ', () => {
-it('Shoud be able to render Showcase component', () => {
-const { container } = render(
-<Showcase />);
+const props = {
+    title: 'Most Popular',
+    highlight: highlightMock,
+    games: gamesMock.slice(0, 1)
+};
 
-expect(screen.getByRole('heading', { name: /Showcase/i })
-).toBeInTheDocument();
+describe('<Showcase /> ', () => {
+    it('Shoud be able to render Showcase component as default', () => {
+        renderWithTheme(<Showcase {...props} />);
 
-expect(container.firstChild).toMatchSnapshot();
-});
+        expect(screen.getByText(/Most Popular/i)).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: highlightMock.title })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: gamesMock[0].title })).toBeInTheDocument();
+
+
+        // expect(container.firstChild).toMatchSnapshot();
+    });
 });
