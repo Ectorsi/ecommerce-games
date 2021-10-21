@@ -20,12 +20,13 @@ const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = ({
     minimal = false,
     icon,
     ...props
-}) => (
+}, ref) => (
     <S.Container
         size={size}
         fullWidth={fullWidth}
         hasIcon={!!icon}
         minimal={minimal}
+        ref={ref}
         {...props}
     >
         {icon} {!!children && <span>{children}</span>}

@@ -294,7 +294,7 @@ exports[`<FormSignUp />  Shoud be able to render FormSignUp component 1`] = `
         Already have account?
          
         <a
-          href="/sign-up"
+          href="/sign-in"
         >
           Sign In
         </a>
