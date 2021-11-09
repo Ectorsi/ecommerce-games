@@ -10,42 +10,62 @@ import highlightMock from 'components/Highlight/mock';
 import Home from '.';
 
 const props = {
-  banners: bannersMock,
-  newGames: [gamesMock[0]],
-  mostPopularHighlight: highlightMock,
-  mostPopularGames: [gamesMock[0]],
-  upcommingGames: [gamesMock[0]],
-  upcommingHighlight: highlightMock,
-  upcommingMoreGames: [gamesMock[0]],
-  freeGames: [gamesMock[0]],
-  freeHighlight: highlightMock
+    banners: bannersMock,
+    newGames: [gamesMock[0]],
+    mostPopularHighlight: highlightMock,
+    mostPopularGames: [gamesMock[0]],
+    upcommingGames: [gamesMock[0]],
+    upcommingHighlight: highlightMock,
+    upcommingMoreGames: [gamesMock[0]],
+    freeGames: [gamesMock[0]],
+    freeHighlight: highlightMock
 }
 
+jest.mock('components/Menu', () => {
+    return {
+        __esModule: true,
+        default: function Mock() {
+            return <div data-testid="Mock Menu" />
+        }
+    };
+});
+
+jest.mock('components/Footer', () => {
+    return {
+        __esModule: true,
+        default: function Mock() {
+            return <div data-testid="Mock Footer" />
+        }
+    };
+});
+
+jest.mock('components/Showcase', () => {
+    return {
+        __esModule: true,
+        default: function Mock() {
+            return <div data-testid="Mock Showcase" />
+        }
+    };
+});
+
+jest.mock('components/BannerSlider', () => {
+    return {
+        __esModule: true,
+        default: function Mock() {
+            return <div data-testid="Mock Banner Slider" />
+        }
+    };
+});
+
 describe('<Home /> ', () => {
-  it('Shoud be able to render menu and footer', () => {
-    renderWithTheme(<Home {...props} />);
+    it('Shoud be able to render menu and footer', () => {
+        renderWithTheme(<Home {...props} />);
 
+        expect(screen.getByTestId('Mock Menu')).toBeInTheDocument();
+        expect(screen.getByTestId('Mock Banner Slider')).toBeInTheDocument();
+        expect(screen.getAllByTestId('Mock Showcase')).toHaveLength(5);
+        expect(screen.getByTestId('Mock Footer')).toBeInTheDocument();
 
-    expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /follow us/i })
-    ).toBeInTheDocument();
-    expect(screen.getAllByRole('img', { name: /won games/i })
-    ).toHaveLength(2)
-    expect(screen.getByRole('heading', { name: /News/i })
-    ).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /Most popular/i })
-    ).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /Upcomming/i })
-    ).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /Free Games/i })
-    ).toBeInTheDocument();
-    //banner
-    expect(screen.getAllByText(/defy death 1/i)).toHaveLength(1);
-    // Card Game (5 sections com 4 cards cada = 5x1 = 5)
-    expect(screen.getAllByText(/population zero/i)).toHaveLength(5);
-    //highlight
-    expect(screen.getAllByText(/read dead is back!/i)).toHaveLength(3);
-
-    // expect(container.firstChild).toMatchSnapshot();
-  });
+        // expect(container.firstChild).toMatchSnapshot();
+    });
 });
