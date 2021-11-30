@@ -1,7 +1,6 @@
 import { ArrowBackIos as ArrowLeft } from '@styled-icons/material-outlined/ArrowBackIos'
 import { ArrowForwardIos as ArrowRight } from '@styled-icons/material-outlined/ArrowForwardIos'
 
-import GameCard, { GameCardProps } from 'components/GameCard';
 import Slider, { SliderSettings } from 'components/Slider';
 import * as S from './styles';
 
@@ -17,47 +16,51 @@ const settings: SliderSettings = {
             breakpoint: 1375,
             settings: {
                 arrows: false,
-                slidesToShow: 3.2
+                slidesToShow: 3.2,
+                draggable: true,
             }
         },
         {
             breakpoint: 1024,
             settings: {
                 arrows: false,
-                slidesToShow: 2.2
+                slidesToShow: 2.2,
+                draggable: true,
             }
         },
         {
-            breakpoint: 570,
+            breakpoint: 768,
             settings: {
                 arrows: false,
-                slidesToShow: 1.2
+                slidesToShow: 2.2,
+                draggable: true,
             }
         },
-        {
-            breakpoint: 375,
-            settings: {
-                arrows: false,
-                slidesToShow: 1.1
-            }
-        }
     ],
-    nextArrow: <ArrowRight aria-label="next games" />,
-    prevArrow: <ArrowLeft aria-label="previous games" />
+    nextArrow: <ArrowRight aria-label="next image" />,
+    prevArrow: <ArrowLeft aria-label="previous image" />
 }
 
-export type GameCardSliderProps = {
-    items: GameCardProps[];
-    color?: 'white' | 'black';
+export type GalleryImageProps = {
+    src: string;
+    label: string;
 }
 
-const GameCardSlider = ({ items, color = 'white' }: GameCardSliderProps) => (
-    <S.Wrapper color={color}>
+export type GalleryProps = {
+    items: GalleryImageProps[];
+}
+
+const Gallery = ({ items }: GalleryProps) => (
+    <S.Wrapper>
         <Slider settings={settings}>
             {items.map((item, index) => (
-                <GameCard key={index} {...item} />
+                <img
+                    role="button"
+                    key={`Thumb-${index}`}
+                    src={item.src}
+                    alt={`Thumb - ${item.label}`} />
             ))}
         </Slider>
     </S.Wrapper>
 )
-export default GameCardSlider
+export default Gallery
