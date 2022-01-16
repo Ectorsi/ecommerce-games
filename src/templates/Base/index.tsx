@@ -4,24 +4,25 @@ import Menu from 'components/Menu';
 import * as S from './styles';
 
 export type BaseProps = {
-    children: React.ReactNode;
+  children: React.ReactNode;
 };
 
 const Base = ({ children }: BaseProps) => (
-    <>
-        <section>
-            <Container>
-                <Menu />
-            </Container>
-        </section>
-
+  <>
+    <S.Wrapper>
+      <Container>
+        <Menu />
+      </Container>
+      <S.Content>
         {children}
+      </S.Content>
 
-        <S.SectionFooter>
-            <Container>
-                <Footer />
-            </Container>
-        </S.SectionFooter>
-    </>
+      <S.SectionFooter>
+        <Container>
+          <Footer />
+        </Container>
+      </S.SectionFooter>
+    </S.Wrapper>
+  </>
 );
 export default Base;
