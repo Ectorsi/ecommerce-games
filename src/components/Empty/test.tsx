@@ -11,7 +11,7 @@ const props = {
 
 describe('<Empty /> ', () => {
   it('Shoud be able to render Empty component', () => {
-    renderWithTheme(<Empty {...props} hasLink />);
+    const { container } = renderWithTheme(<Empty {...props} hasLink />);
 
     expect(
       screen.getByRole('image', { name: /a gamer in a couch playing videogame/i })
@@ -20,6 +20,8 @@ describe('<Empty /> ', () => {
     expect(screen.getByText(/Empty wishlist/i)).toBeInTheDocument();
     expect(screen.getByText(/A simple description/i)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Go back to store/i })).toHaveAttribute('href', '/');
+
+    expect(container.parentElement).toMatchSnapshot();
   });
 
   it('Shoud be able to render Empty component without the Link', () => {
