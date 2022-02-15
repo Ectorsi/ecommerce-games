@@ -19,7 +19,7 @@ describe('<GameItem /> ', () => {
     // expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('Shoud be able to render GameItem component', () => {
+  it('Shoud be able to render Item', () => {
     renderWithTheme(<GameItem {...props} />);
 
     expect(screen.getByRole(
@@ -27,5 +27,14 @@ describe('<GameItem /> ', () => {
     )).toHaveAttribute('src', props.img);
     expect(screen.getByRole('heading', { name: props.title })).toBeInTheDocument();
     expect(screen.getByText(props.price)).toBeInTheDocument();
+  });
+
+  it('Shoud be able to render the item with download link', () => {
+    const downloadLink = 'https://link';
+    renderWithTheme(<GameItem {...props} downloadLink={downloadLink} />);
+
+    expect(screen.getByRole('link', { name: `Get ${props.title} here` })
+    ).toHaveAttribute('href', downloadLink);
+
   });
 });
