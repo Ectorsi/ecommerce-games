@@ -6,6 +6,7 @@ import { Container } from 'components/Container';
 import { HighlightProps } from 'components/Highlight';
 import { Grid } from 'components/Grid';
 import { Divider } from 'components/Divider';
+import Empty from 'components/Empty';
 
 export type WishlistTemplateProps = {
   games?: GameCardProps[]
@@ -18,11 +19,23 @@ const Wishlist = ({ recommendedGames, recommendedHighlight, games }: WishlistTem
     <Container>
       <Heading lineLeft lineColor='secondary' >Wishlist</Heading>
 
-      <Grid>
-        {games?.map((game, index) => (
-          <GameCard key={`wishlist-${index}`} {...game} />
-        ))}
-      </Grid>
+      {games ?
+        (
+          <Grid>
+            {games?.map((game, index) => (
+              <GameCard key={`wishlist-${index}`} {...game} />
+            ))}
+          </Grid>
+        )
+        : (
+          <Empty
+            title='Nenhum resultado encontrado'
+            description='Infelizmente não achamos nenhum resultado para a sua busca.'
+            hasLink
+          />
+
+        )
+      }
 
       <Divider />
     </Container>
